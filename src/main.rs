@@ -24,9 +24,9 @@ fn main() {
 
     let mut pixels = vec![0; bounds.0 * bounds.1];
 
-    // render(&mut pixels, bounds, upper_left, lower_right);
+    render(&mut pixels, bounds, upper_left, lower_right);
 
-    // write_image(&args[1], &pixels, bounds).expect("Error writing PNG file")
+    write_image(&args[1], &pixels, bounds).expect("Error writing PNG file")
 }
 
 fn pixel_to_point(
