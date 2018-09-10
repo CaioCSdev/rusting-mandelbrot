@@ -68,21 +68,27 @@ fn pixel_to_point(
 
     Complex {
         re: upper_left.re + pixel.0 as f64 * width / bounds.0 as f64,
-        im: upper_left.im - pixel.1 as f64 * height / bounds.0 as f64
+        im: upper_left.im - pixel.1 as f64 * height / bounds.1 as f64
     }
 }
 
 #[test]
 fn test_pixel_to_point() {
-    assert_eq!(
-        pixel_to_point(
-            (100, 100),
-            (25, 75),
-            Complex { re: -1.0, im: 1.0 },
-            Complex { re: 1.0, im: -1.0 }
-        ),
-        Complex { re: -0.5, im: -0.5 }
-    )
+    let point1 = pixel_to_point(
+        (100, 100),
+        (25, 75),
+        Complex { re: -1.0, im: 1.0 },
+        Complex { re: 1.0, im: -1.0 }
+    );
+
+    let point2 = pixel_to_point(
+        (200, 100),
+        (200, 100),
+        Complex { re: 0.0, im: 0.0 },
+        Complex { re: -2.0, im: -1.0 }
+    );
+    assert_eq!( point1, Complex { re: -0.5, im: -0.5 } );
+    assert_eq!( point2, Complex {re: -2.0, im: -1.0} );
 }
 
 // #[allow(dead_code)]
